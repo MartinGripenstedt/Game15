@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.List;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+// then press Enter. You can now see whitespace characters in your code. Kalle
 public class Game15 extends JFrame implements ActionListener {
     JPanel knappar = new JPanel();
     JButton jb1 = new JButton("1");
