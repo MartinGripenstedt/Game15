@@ -7,7 +7,7 @@ import java.util.List;
 public class Game15 extends JFrame implements ActionListener {
     JPanel knappar = new JPanel();
     JPanel victoryMessagePanel = new JPanel();
-    JLabel victoryMessage = new JLabel("Du vann!");
+    JLabel victoryMessage = new JLabel("Grattis du vann!");
     JButton jb1 = new JButton("1");
     JButton jb2 = new JButton("2");
     JButton jb3 = new JButton("3");
@@ -85,7 +85,7 @@ public class Game15 extends JFrame implements ActionListener {
 
 
         setVisible(true);
-        pack();
+        setSize(430,430);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
