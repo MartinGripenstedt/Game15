@@ -82,7 +82,7 @@ public class Game15 extends JFrame implements ActionListener {
         }
 
 
-        //Lägga till knappar i listan buttonList
+        //Lägga till knappar i listan buttonList.
         add(knappar);
         for (JButton button : buttonList) {
             knappar.add(button);
