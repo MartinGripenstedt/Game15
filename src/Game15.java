@@ -81,7 +81,7 @@ public class Game15 extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         new Game15();
-    }
+    }//
 
     @Override
     public void actionPerformed(ActionEvent e) {
