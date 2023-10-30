@@ -25,6 +25,7 @@ public class Game15 extends JFrame implements ActionListener {
     JButton jb15 = new JButton("15");
     JButton jb16 = new JButton();
     List<JButton> buttonList = new ArrayList<>();
+    List<JButton> buttonListSorted = new ArrayList<>();
     JButton[][] buttonGrid = new JButton[4][4];
 
 
@@ -53,6 +54,23 @@ public class Game15 extends JFrame implements ActionListener {
         buttonList.add(jb14);
         buttonList.add(jb15);
         buttonList.add(jb16);
+        buttonListSorted.add(jb1);
+        buttonListSorted.add(jb2);
+        buttonListSorted.add(jb3);
+        buttonListSorted.add(jb4);
+        buttonListSorted.add(jb5);
+        buttonListSorted.add(jb6);
+        buttonListSorted.add(jb7);
+        buttonListSorted.add(jb8);
+        buttonListSorted.add(jb9);
+        buttonListSorted.add(jb10);
+        buttonListSorted.add(jb11);
+        buttonListSorted.add(jb12);
+        buttonListSorted.add(jb13);
+        buttonListSorted.add(jb14);
+        buttonListSorted.add(jb15);
+        buttonListSorted.add(jb16);
+
         Collections.shuffle(buttonList);
 
         int index = 0;
@@ -70,19 +88,10 @@ public class Game15 extends JFrame implements ActionListener {
             knappar.add(button);
         }
 
-/*        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                knappar.add(buttonGrid[i][j]);
-            }
-        }*/
-
-
-
         //Add actionlistener to buttons
         for (JButton button : buttonList) {
             button.addActionListener(this);
         }
-
 
         setVisible(true);
         setSize(430,430);
@@ -138,6 +147,18 @@ public class Game15 extends JFrame implements ActionListener {
             }
             knappar.revalidate();
             knappar.repaint();
+
+        }
+            buttonList.clear();
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j <4; j++) {
+                    buttonList.add(buttonGrid[i][j]);
+
+                }
+
+            }
+        if(buttonList.equals(buttonListSorted)){
+            victoryMessagePanel.setVisible(true);
         }
     }
 
