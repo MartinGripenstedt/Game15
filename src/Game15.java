@@ -60,9 +60,16 @@ public class Game15 extends JFrame implements ActionListener {
 
         //Lägga till knappar i listan buttonList
         add(knappar);
-        for (JButton button :buttonList) {
+        for (JButton button : buttonList) {
             knappar.add(button);
         }
+
+/*        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                knappar.add(buttonGrid[i][j]);
+            }
+        }*/
+
 
 
         //Add actionlistener to buttons
@@ -78,27 +85,54 @@ public class Game15 extends JFrame implements ActionListener {
     }
 
 
-
     public static void main(String[] args) {
         new Game15();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        boolean swapped = false;
+
+        outerLoop:
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (buttonGrid[i][j] == e.getSource()) {
+                    JButton actualButton = buttonGrid[i][j];
+
                     if (i > 0 && buttonGrid[i-1][j] == jb16) {
-                        System.out.println("Knappen nedanför");
+                        buttonGrid[i][j] = jb16;
+                        buttonGrid[i-1][j] = actualButton;
+                        swapped = true;
                     } else if (i < 3 && buttonGrid[i+1][j] == jb16) {
-                        System.out.println("Knappen ovanför");
+                        buttonGrid[i][j] = jb16;
+                        buttonGrid[i+1][j] = actualButton;
+                        swapped = true;
                     } else if (j > 0 && buttonGrid[i][j-1] == jb16) {
-                        System.out.println("Högra knappen");
+                        buttonGrid[i][j] = jb16;
+                        buttonGrid[i][j-1] = actualButton;
+                        swapped = true;
                     } else if (j < 3 && buttonGrid[i][j+1] == jb16) {
-                        System.out.println("Vänstra knappen");
+                        buttonGrid[i][j] = jb16;
+                        buttonGrid[i][j+1] = actualButton;
+                        swapped = true;
+                    }
+                    if (swapped) {
+                        break outerLoop;
                     }
                 }
             }
         }
+        //Refresh GUI
+        if (swapped) {
+            knappar.removeAll();
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
+                    knappar.add(buttonGrid[x][y]);
+                }
+            }
+            knappar.revalidate();
+            knappar.repaint();
+        }
     }
+
 }
