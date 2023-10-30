@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.List;
 public class Game15 extends JFrame implements ActionListener {
     JPanel knappar = new JPanel();
+    JPanel victoryMessagePanel = new JPanel();
+    JLabel victoryMessage = new JLabel("Du vann!");
     JButton jb1 = new JButton("1");
     JButton jb2 = new JButton("2");
     JButton jb3 = new JButton("3");
@@ -28,8 +30,12 @@ public class Game15 extends JFrame implements ActionListener {
 
     Game15(){
         setLayout(new BorderLayout());
+        add(victoryMessagePanel,BorderLayout.NORTH);
         add(knappar, BorderLayout.CENTER);
         knappar.setLayout(new GridLayout(4,4));
+
+        victoryMessagePanel.add(victoryMessage);
+        victoryMessagePanel.setVisible(false);
 
         buttonList.add(jb1);
         buttonList.add(jb2);
