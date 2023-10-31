@@ -5,9 +5,14 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 public class Game15 extends JFrame implements ActionListener {
+    public static void main(String[] args) {
+        new Game15();
+    }
     JPanel knappar = new JPanel();
     JPanel victoryMessagePanel = new JPanel();
+    JPanel newGamePanel = new JPanel();
     JLabel victoryMessage = new JLabel("Grattis du vann!");
+    JButton newGameButton = new JButton("New Game");
     JButton jb1 = new JButton("1");
     JButton jb2 = new JButton("2");
     JButton jb3 = new JButton("3");
@@ -32,11 +37,15 @@ public class Game15 extends JFrame implements ActionListener {
     Game15(){
         setLayout(new BorderLayout());
         add(victoryMessagePanel,BorderLayout.NORTH);
+        add(newGamePanel,BorderLayout.SOUTH);
         add(knappar, BorderLayout.CENTER);
         knappar.setLayout(new GridLayout(4,4));
 
         victoryMessagePanel.add(victoryMessage);
         victoryMessagePanel.setVisible(false);
+        newGamePanel.add(newGameButton);
+
+
 
         buttonList.add(jb1);
         buttonList.add(jb2);
@@ -72,6 +81,26 @@ public class Game15 extends JFrame implements ActionListener {
         buttonListSorted.add(jb16);
 
         Collections.shuffle(buttonList);
+        newGameButton.addActionListener(l -> {
+            Collections.shuffle(buttonList);
+                    int index = 0;
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            buttonGrid[i][j] = buttonList.get(index);
+                            index++;
+                        }
+                    }
+
+            knappar.removeAll();
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
+                    knappar.add(buttonGrid[x][y]);
+                }
+            }
+            knappar.revalidate();
+            knappar.repaint();
+
+            });
 
         int index = 0;
         for (int i = 0; i < 4; i++) {
@@ -100,9 +129,6 @@ public class Game15 extends JFrame implements ActionListener {
     }
 
 
-    public static void main(String[] args) {
-        new Game15();
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
