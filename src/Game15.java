@@ -76,7 +76,7 @@ public class Game15 extends JFrame implements ActionListener {
         buttonListEasyWin.set(14, jb16);
         buttonListEasyWin.set(15, jb15);
         Collections.shuffle(buttonList);
-
+        updateButtonGrid(buttonList);
 
         easyWinButton.addActionListener(l -> {
             victoryMessagePanel.setVisible(false);
@@ -89,56 +89,6 @@ public class Game15 extends JFrame implements ActionListener {
             updateButtonGrid(buttonList);
         });
 
-
-
-/*        easyWinButton.addActionListener(l -> {
-            victoryMessagePanel.setVisible(false);
-            int index = 0;
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 4; j++) {
-                    buttonGrid[i][j] = buttonListEasyWin.get(index);
-                    index++;
-                }
-            }
-            knappar.removeAll();
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
-                    knappar.add(buttonGrid[x][y]);
-                }
-            }
-            knappar.revalidate();
-            knappar.repaint();
-        });
-
-
-        newGameButton.addActionListener(l -> {
-            victoryMessagePanel.setVisible(false);
-            Collections.shuffle(buttonList);
-                    int index = 0;
-                    for (int i = 0; i < 4; i++) {
-                        for (int j = 0; j < 4; j++) {
-                            buttonGrid[i][j] = buttonList.get(index);
-                            index++;
-                        }
-                    }
-            knappar.removeAll();
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
-                    knappar.add(buttonGrid[x][y]);
-                }
-            }
-            knappar.revalidate();
-            knappar.repaint();
-            });
-
-
-        int index = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                buttonGrid[i][j] = buttonList.get(index);
-                index++;
-            }
-        }*/
 
         add(knappar);
         for (JButton button : buttonList) {
