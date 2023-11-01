@@ -13,6 +13,7 @@ public class Game15 extends JFrame implements ActionListener {
     JPanel newGamePanel = new JPanel();
     JLabel victoryMessage = new JLabel("Grattis du vann!");
     JButton newGameButton = new JButton("New Game");
+    JButton easyWinButton = new JButton("Easy win mode");
     JButton jb1 = new JButton("1");
     JButton jb2 = new JButton("2");
     JButton jb3 = new JButton("3");
@@ -31,6 +32,8 @@ public class Game15 extends JFrame implements ActionListener {
     JButton jb16 = new JButton();
     List<JButton> buttonList = new ArrayList<>();
     List<JButton> buttonListSorted = new ArrayList<>();
+    List<JButton> buttonListEasyWin = new ArrayList<>();
+
     JButton[][] buttonGrid = new JButton[4][4];
 
 
@@ -44,7 +47,7 @@ public class Game15 extends JFrame implements ActionListener {
         victoryMessagePanel.add(victoryMessage);
         victoryMessagePanel.setVisible(false);
         newGamePanel.add(newGameButton);
-
+        newGamePanel.add(easyWinButton);
 
 
         buttonList.add(jb1);
@@ -63,7 +66,12 @@ public class Game15 extends JFrame implements ActionListener {
         buttonList.add(jb14);
         buttonList.add(jb15);
         buttonList.add(jb16);
-        buttonListSorted.add(jb1);
+
+        for (JButton button : buttonList) {         //ÖKAR SIFFERSTORLEK FÖR ALLA KNAPPAR I buttonList
+            button.setFont(new Font(button.getFont().getName(), Font.BOLD, 24));
+        }
+
+        /*        buttonListSorted.add(jb1);
         buttonListSorted.add(jb2);
         buttonListSorted.add(jb3);
         buttonListSorted.add(jb4);
@@ -78,7 +86,37 @@ public class Game15 extends JFrame implements ActionListener {
         buttonListSorted.add(jb13);
         buttonListSorted.add(jb14);
         buttonListSorted.add(jb15);
-        buttonListSorted.add(jb16);
+        buttonListSorted.add(jb16);*/
+        for (JButton button : buttonList) {  ///LÄGGER TILL KNAPPAR PÅ ETT SNYGGARE SÄTT
+            buttonListSorted.add(button);
+        }
+
+        for (JButton button : buttonList) {  //NYTT FÖR EASYWIN
+            buttonListEasyWin.add(button);
+        }
+        buttonListEasyWin.set(14, jb16);
+        buttonListEasyWin.set(15, jb15);
+
+        easyWinButton.addActionListener(l -> {
+            int index = 0;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    buttonGrid[i][j] = buttonListEasyWin.get(index);
+                    index++;
+                }
+            }
+
+            knappar.removeAll();
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
+                    knappar.add(buttonGrid[x][y]);
+                }
+            }
+            knappar.revalidate();
+            knappar.repaint();
+        });                             //HIT GÅR KODEN FÖR EASYWIN
+
+
 
         Collections.shuffle(buttonList);
         newGameButton.addActionListener(l -> {
