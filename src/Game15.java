@@ -80,6 +80,19 @@ public class Game15 extends JFrame implements ActionListener {
 
         easyWinButton.addActionListener(l -> {
             victoryMessagePanel.setVisible(false);
+            updateButtonGrid(buttonListEasyWin);
+        });
+
+        newGameButton.addActionListener(l -> {
+            victoryMessagePanel.setVisible(false);
+            Collections.shuffle(buttonList);
+            updateButtonGrid(buttonList);
+        });
+
+
+
+/*        easyWinButton.addActionListener(l -> {
+            victoryMessagePanel.setVisible(false);
             int index = 0;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
@@ -125,7 +138,7 @@ public class Game15 extends JFrame implements ActionListener {
                 buttonGrid[i][j] = buttonList.get(index);
                 index++;
             }
-        }
+        }*/
 
         add(knappar);
         for (JButton button : buttonList) {
@@ -140,6 +153,24 @@ public class Game15 extends JFrame implements ActionListener {
         setSize(430,430);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    private void updateButtonGrid(List<JButton> list) {
+        int index = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                buttonGrid[i][j] = list.get(index);
+                index++;
+            }
+        }
+        knappar.removeAll();
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                knappar.add(buttonGrid[x][y]);
+            }
+        }
+        knappar.revalidate();
+        knappar.repaint();
     }
 
 
