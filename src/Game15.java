@@ -13,7 +13,7 @@ public class Game15 extends JFrame implements ActionListener {
     JPanel newGamePanel = new JPanel();
     JLabel victoryMessage = new JLabel("Grattis du vann!");
     JButton newGameButton = new JButton("New Game");
-    JButton easyWinButton = new JButton("Easy win mode");
+    JButton easyWinButton = new JButton("Easy Win Mode");
     JButton jb1 = new JButton("1");
     JButton jb2 = new JButton("2");
     JButton jb3 = new JButton("3");
@@ -33,7 +33,6 @@ public class Game15 extends JFrame implements ActionListener {
     List<JButton> buttonList = new ArrayList<>();
     List<JButton> buttonListSorted = new ArrayList<>();
     List<JButton> buttonListEasyWin = new ArrayList<>();
-
     JButton[][] buttonGrid = new JButton[4][4];
 
 
@@ -45,10 +44,11 @@ public class Game15 extends JFrame implements ActionListener {
         knappar.setLayout(new GridLayout(4,4));
 
         victoryMessagePanel.add(victoryMessage);
+        victoryMessage.setFont(new Font("Arial", Font.BOLD, 24));
+        victoryMessagePanel.setBackground(Color.GREEN);
         victoryMessagePanel.setVisible(false);
         newGamePanel.add(newGameButton);
         newGamePanel.add(easyWinButton);
-
 
         buttonList.add(jb1);
         buttonList.add(jb2);
@@ -67,37 +67,19 @@ public class Game15 extends JFrame implements ActionListener {
         buttonList.add(jb15);
         buttonList.add(jb16);
 
-        for (JButton button : buttonList) {         //ÖKAR SIFFERSTORLEK FÖR ALLA KNAPPAR I buttonList
-            button.setFont(new Font(button.getFont().getName(), Font.BOLD, 24));
+        for (JButton button : buttonList) {
+            button.setFont(new Font("Arial", Font.BOLD, 24));
         }
 
-        /*        buttonListSorted.add(jb1);
-        buttonListSorted.add(jb2);
-        buttonListSorted.add(jb3);
-        buttonListSorted.add(jb4);
-        buttonListSorted.add(jb5);
-        buttonListSorted.add(jb6);
-        buttonListSorted.add(jb7);
-        buttonListSorted.add(jb8);
-        buttonListSorted.add(jb9);
-        buttonListSorted.add(jb10);
-        buttonListSorted.add(jb11);
-        buttonListSorted.add(jb12);
-        buttonListSorted.add(jb13);
-        buttonListSorted.add(jb14);
-        buttonListSorted.add(jb15);
-        buttonListSorted.add(jb16);*/
-        for (JButton button : buttonList) {  ///LÄGGER TILL KNAPPAR PÅ ETT SNYGGARE SÄTT
-            buttonListSorted.add(button);
-        }
-
-        for (JButton button : buttonList) {  //NYTT FÖR EASYWIN
-            buttonListEasyWin.add(button);
-        }
+        buttonListSorted.addAll(buttonList);
+        buttonListEasyWin.addAll(buttonList);
         buttonListEasyWin.set(14, jb16);
         buttonListEasyWin.set(15, jb15);
+        Collections.shuffle(buttonList);
+
 
         easyWinButton.addActionListener(l -> {
+            victoryMessagePanel.setVisible(false);
             int index = 0;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
@@ -105,7 +87,6 @@ public class Game15 extends JFrame implements ActionListener {
                     index++;
                 }
             }
-
             knappar.removeAll();
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 4; y++) {
@@ -114,12 +95,11 @@ public class Game15 extends JFrame implements ActionListener {
             }
             knappar.revalidate();
             knappar.repaint();
-        });                             //HIT GÅR KODEN FÖR EASYWIN
+        });
 
 
-
-        Collections.shuffle(buttonList);
         newGameButton.addActionListener(l -> {
+            victoryMessagePanel.setVisible(false);
             Collections.shuffle(buttonList);
                     int index = 0;
                     for (int i = 0; i < 4; i++) {
@@ -128,7 +108,6 @@ public class Game15 extends JFrame implements ActionListener {
                             index++;
                         }
                     }
-
             knappar.removeAll();
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 4; y++) {
@@ -137,8 +116,8 @@ public class Game15 extends JFrame implements ActionListener {
             }
             knappar.revalidate();
             knappar.repaint();
-
             });
+
 
         int index = 0;
         for (int i = 0; i < 4; i++) {
@@ -148,14 +127,11 @@ public class Game15 extends JFrame implements ActionListener {
             }
         }
 
-
-        //Lägga till knappar i listan buttonList
         add(knappar);
         for (JButton button : buttonList) {
             knappar.add(button);
         }
 
-        //Add actionlistener to buttons
         for (JButton button : buttonList) {
             button.addActionListener(this);
         }
@@ -165,7 +141,6 @@ public class Game15 extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
 
 
     @Override
@@ -211,7 +186,6 @@ public class Game15 extends JFrame implements ActionListener {
             }
             knappar.revalidate();
             knappar.repaint();
-
         }
             buttonList.clear();
             for (int i = 0; i < 4; i++) {
@@ -219,11 +193,9 @@ public class Game15 extends JFrame implements ActionListener {
                     buttonList.add(buttonGrid[i][j]);
 
                 }
-
             }
         if(buttonList.equals(buttonListSorted)){
             victoryMessagePanel.setVisible(true);
         }
     }
-
 }
