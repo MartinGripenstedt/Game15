@@ -127,7 +127,7 @@ public class Game15 extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boolean swapped = false;
 
-        outerLoop:
+        //outerLoop:
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (buttonGrid[i][j] == e.getSource()) {
@@ -150,10 +150,11 @@ public class Game15 extends JFrame implements ActionListener {
                         buttonGrid[i][j+1] = actualButton;
                         swapped = true;
                     }
-                    if (swapped) {
-                        break outerLoop;
-                    }
+                    if (swapped)
+                        break;
                 }
+                if (swapped)
+                    break;
             }
         }
         //Refresh GUI
