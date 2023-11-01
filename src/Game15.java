@@ -123,7 +123,6 @@ public class Game15 extends JFrame implements ActionListener {
         knappar.repaint();
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         boolean swapped = false;
